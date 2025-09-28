@@ -10,31 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace todolistveronn
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для CreateWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CreateWindow : Window
     {
-        public MainWindow()
+        public CreateWindow()
         {
             InitializeComponent();
         }
-
-        private void tgTodo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void CreateTask_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new CreateWindow();
-            window.ShowDialog();
-        }
     }
 }
-

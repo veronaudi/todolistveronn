@@ -7,12 +7,26 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="800">
     <Grid>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <Button Content="Создать задачу"
+                        Width="110" Height="30"
+                        Margin="0,0,5,0"
+                        Click="CreateTask_Click"/>
+                <Button Content="Сортировать"
+                        Width="110" Height="30"/>
+            </StackPanel>
 
-        <Button Content="Создать задачу" HorizontalAlignment="Center" Margin="0,38,0,0" VerticalAlignment="Top" Width="107" Height="30
-                "/>
-        <Button Content="Сортировать" HorizontalAlignment="Center" Margin="0,85,0,0" VerticalAlignment="Top" Width="107" Height="30
-                "/>
-        
-
+            <DataGrid x:Name="tgTodo"
+                      FontSize="16"
+                      FontWeight="Bold"
+                      AutoGenerateColumns="False"
+                      Height="507" SelectionChanged="tgTodo_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Width="40" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Title}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </Window>
