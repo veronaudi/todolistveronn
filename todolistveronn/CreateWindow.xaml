@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="Новая задача" Height="321" Width="562">
     <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="39,31,117,76">
+            <TextBox x:Name="TaskTitle" TextWrapping="Wrap" AcceptsReturn="True" FontSize="16" Text="Задача"/>
+        </ScrollViewer>
+        <Button Content="Создать" HorizontalAlignment="Left" Margin="465,31,0,0" VerticalAlignment="Top" Height="32" Width="73"/>
+        <TextBox HorizontalAlignment="Left" Height="33" Margin="39,248,0,0" TextWrapping="Wrap" Text="Добавить время" VerticalAlignment="Top" Width="202"/>
+        <TextBox HorizontalAlignment="Left" Height="33" Margin="281,248,0,0" TextWrapping="Wrap" Text="Добавить категорию" VerticalAlignment="Top" Width="202"/>
+        <Button Content="Добавить подзадачу" HorizontalAlignment="Left" Margin="407,213,0,0" VerticalAlignment="Top" Height="18" Width="28"/>
 
     </Grid>
 </Window>
