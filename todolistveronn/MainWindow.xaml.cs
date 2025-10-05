@@ -27,7 +27,7 @@ namespace todolistveronn
 
         private void tgTodo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
 
         private void CreateTask_Click(object sender, RoutedEventArgs e)

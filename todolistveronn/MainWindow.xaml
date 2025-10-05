@@ -24,7 +24,18 @@
                       Height="507" SelectionChanged="tgTodo_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Id}" Width="40" IsReadOnly="True"/>
-                    <DataGridTextColumn Binding="{Binding Title}" Width="*" />
+                    <DataGridTextColumn Binding="{Binding Id}" Width="550" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Title}" Width="150" />
+                    <!--<DataGridTemplateColumn Header="Действия" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="✎" Margin="2" Padding="5,2">
+                                    <Button Content="🗑" Margin="2" Padding="5,2" ToolTip="Удалить"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
