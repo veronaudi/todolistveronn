@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:todolistveronn"
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="800">
+
     <Grid>
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
@@ -21,21 +22,24 @@
                       FontSize="16"
                       FontWeight="Bold"
                       AutoGenerateColumns="False"
-                      Height="507" SelectionChanged="tgTodo_SelectionChanged">
+                      Height="507">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Width="40" IsReadOnly="True"/>
-                    <DataGridTextColumn Binding="{Binding Id}" Width="550" IsReadOnly="True"/>
-                    <DataGridTextColumn Binding="{Binding Title}" Width="150" />
-                    <!--<DataGridTemplateColumn Header="Действия" Width="*">
+                    <DataGridTemplateColumn Header="Выполнено" Width="80">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="✎" Margin="2" Padding="5,2">
-                                    <Button Content="🗑" Margin="2" Padding="5,2" ToolTip="Удалить"/>
-                                </StackPanel>
+                                <Button Content="{Binding Status}" 
+                    Click="ToggleCompleted_Click"
+                    FontSize="16"
+                    Background="Transparent"
+                    BorderThickness="0"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Задача" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="120"/>
+                    <DataGridTextColumn Header="Срок" Binding="{Binding DueDate, StringFormat=dd.MM.yyyy}" Width="100"/>
+                    <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

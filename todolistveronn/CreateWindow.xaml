@@ -7,14 +7,16 @@
         mc:Ignorable="d"
         Title="Новая задача" Height="405" Width="565">
     <Grid>
+        
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="39,31,117,76">
             <TextBox x:Name="TaskTitle" TextWrapping="Wrap" AcceptsReturn="True" FontSize="16" Text="Задача" Height="318"/>
         </ScrollViewer>
-        <Button Content="Создать" HorizontalAlignment="Left" Margin="465,31,0,0" VerticalAlignment="Top" Height="32" Width="73"/>
+        
+        <Button x:Name="CreateButton" Content="Создать" HorizontalAlignment="Left" Margin="465,31,0,0" VerticalAlignment="Top" Height="32" Width="73" Click="CreateButton_Click"/>
 
-        <TextBox HorizontalAlignment="Left" Height="33" Margin="300,308,0,0" TextWrapping="Wrap" Text="Добавить категорию" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="CategoryTextBox" HorizontalAlignment="Left" Height="33" Margin="300,308,0,0" TextWrapping="Wrap" Text="Добавить категорию" VerticalAlignment="Top" Width="202"/>
         <Button Content="Добавить подзадачу" HorizontalAlignment="Left" Margin="401,267,0,0" VerticalAlignment="Top" Height="18" Width="28" RenderTransformOrigin="-0.332,0.597"/>
-        <DatePicker Margin="40,308,320,43" Height="33" Width="202"/>
+        <DatePicker x:Name="DueDatePicker" Margin="40,308,320,43" Height="33" Width="202"/>
 
         <Label Content="Приоритет:" HorizontalAlignment="Left" Margin="465,68,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="PriorityComboBox" HorizontalAlignment="Left" Margin="450,99,0,0" VerticalAlignment="Top" Width="100" SelectedIndex="0">
