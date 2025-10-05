@@ -10,12 +10,8 @@
     <Grid>
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
-                <Button Content="Создать задачу"
-                        Width="110" Height="30"
-                        Margin="0,0,5,0"
-                        Click="CreateTask_Click"/>
-                <Button Content="Сортировать"
-                        Width="110" Height="30"/>
+                <Button Content="Создать задачу" Width="110" Height="30" Margin="0,0,5,0" Click="CreateTask_Click"/>
+                <Button Content="Удалить" Width="110" Height="30" Click="DeleteTask_Click"/>
             </StackPanel>
 
             <DataGrid x:Name="tgTodo"
@@ -23,22 +19,19 @@
                       FontWeight="Bold"
                       AutoGenerateColumns="False"
                       Height="507">
+                
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Выполнено" Width="80">
+                    <DataGridTemplateColumn Width="30">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="{Binding Status}" 
-                    Click="ToggleCompleted_Click"
-                    FontSize="16"
-                    Background="Transparent"
-                    BorderThickness="0"/>
+                                <Button Content="{Binding Status}" Click="ToggleCompleted_Click" FontSize="16" Background="Transparent" BorderThickness="0"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Задача" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Задача" Binding="{Binding Title}" Width="440"/>
                     <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="120"/>
-                    <DataGridTextColumn Header="Срок" Binding="{Binding DueDate, StringFormat=dd.MM.yyyy}" Width="100"/>
+                    <DataGridTextColumn Header="Срок" Binding="{Binding DueDate, StringFormat=dd.MM.yyyy}" Width="90"/>
                     <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>

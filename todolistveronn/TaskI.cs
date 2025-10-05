@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace todolistveronn
             this.category = category;
             this.priority = priority;
             this.isCompleted = false;
+            SubTasks = new ObservableCollection<Taskl>();
         }
         public Taskl()
         {
@@ -30,6 +32,7 @@ namespace todolistveronn
             this.category = "Общее";
             this.priority = 1;
             this.isCompleted = false;
+            SubTasks = new ObservableCollection<Taskl>();
         }
         public string Title
         {
@@ -65,6 +68,7 @@ namespace todolistveronn
             get { return priority; }
             set { priority = value; }
         }
+        public ObservableCollection<Taskl> SubTasks { get; set; }
         public string Status => IsCompleted ? "[✓]" : "[ ]";
         public override string ToString()
         {

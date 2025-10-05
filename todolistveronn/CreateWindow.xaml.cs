@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Shell;
 
 namespace todolistveronn
 {
@@ -23,13 +24,31 @@ namespace todolistveronn
             DueDatePicker.SelectedDate = DateTime.Now;
         }
 
-    private void CreateButton_Click(object sender, RoutedEventArgs e)
+        private void AddSubTask_Click(object sender, RoutedEventArgs e)
+        {
+            var tb = new TextBox
+            {
+                Height = 25,
+                Margin = new Thickness(20, 2, 0, 2), // отступ слева, чтобы показать вложенность
+                Text = "Новая подзадача"
+            };
+            SubTasksPanel.Children.Add(tb);
+        }
+
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             string title = TaskTitle.Text?.Trim();
             if (string.IsNullOrEmpty(title))
             {
                 MessageBox.Show("Введите название задачи!");
                 return;
+            }
+            foreach (var child in SubTasksPanel.Children)
+            {
+                if (child is TextBox tb && !string.IsNullOrWhiteSpace(tb.Text))
+                {
+                    NewTask.SubTasks.Add(new Taskl(tb.Text.Trim(), NewTask.DueDate, NewTask.Category, NewTask.Priority));
+                }
             }
 
             string category = CategoryTextBox.Text?.Trim() ?? "Общее";

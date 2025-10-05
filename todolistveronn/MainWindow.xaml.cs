@@ -29,7 +29,7 @@ namespace todolistveronn
 
             fileSave = new FileSave(PATH);
             tgTodo.ItemsSource = Tasks;
-            try
+            try   //для права доступа (если у нас его нет)
             {
                 var loadedTasks = fileSave.LoadData();
                 foreach (var task in loadedTasks)
@@ -48,9 +48,9 @@ namespace todolistveronn
         private void CreateTask_Click(object sender, RoutedEventArgs e)
         {
             var window = new CreateWindow();
-            if (window.ShowDialog() == true)  // проверяем, нажата ли кнопка "Создать"
+            if (window.ShowDialog() == true)
             {
-                Tasks.Add(window.NewTask);    // добавляем новую задачу в ObservableCollection
+                Tasks.Add(window.NewTask);
             }
         }
         private void ToggleCompleted_Click(object sender, RoutedEventArgs e)
@@ -64,6 +64,29 @@ namespace todolistveronn
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             fileSave.SaveData(Tasks);
+        }
+
+        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (tgTodo.SelectedItem is Taskl selectedTask)
+            {
+                Tasks.Remove(selectedTask);
+            }
+        }
+
+        private void RefreshGrid()
+        {
+            var flatList = new ObservableCollection<Taskl>();
+            foreach (var t in Tasks)
+            {
+                flatList.Add(t);
+                foreach (var st in t.SubTasks)
+                {
+                    // добавляем отступ в Title
+                    flatList.Add(new Taskl($"    {st.Title}", st.DueDate, st.Category, st.Priority) { IsCompleted = st.IsCompleted });
+                }
+            }
+            tgTodo.ItemsSource = flatList;
         }
 
     }
