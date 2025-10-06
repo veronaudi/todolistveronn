@@ -19,7 +19,17 @@
                       FontWeight="Bold"
                       AutoGenerateColumns="False"
                       Height="507">
-                
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSubtask}" Value="True">
+                                <Setter Property="Background" Value="#FFF5F5F5"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="30">
                         <DataGridTemplateColumn.CellTemplate>
@@ -29,7 +39,20 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Задача" Binding="{Binding Title}" Width="440"/>
+                    <DataGridTemplateColumn Header="Задача" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock FontSize="16" Text="{Binding Title}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding SubTasksText}" 
+                                               Foreground="Gray" 
+                                               FontSize="14" 
+                                               Margin="20,0,0,0"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="120"/>
                     <DataGridTextColumn Header="Срок" Binding="{Binding DueDate, StringFormat=dd.MM.yyyy}" Width="90"/>
                     <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="*"/>

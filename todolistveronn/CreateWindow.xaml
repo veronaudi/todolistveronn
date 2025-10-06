@@ -18,7 +18,7 @@
         <TextBox x:Name="CategoryTextBox" HorizontalAlignment="Left" Height="33" Margin="300,308,0,0" TextWrapping="Wrap" Text="Новая категория" VerticalAlignment="Top" Width="202"/>
         
         <Button Content="Добавить подзадачу" HorizontalAlignment="Left" Margin="282,272,0,0" VerticalAlignment="Top" Height="20" Width="134" RenderTransformOrigin="-0.332,0.597" Click="AddSubTask_Click"/>
-        <StackPanel x:Name="SubTasksPanel" Margin="10,5,0,0"/>
+        <StackPanel x:Name="SubTasksPanel" Margin="0,6,0,0"/>
         
         <DatePicker x:Name="DueDatePicker" Margin="40,308,320,43" Height="33" Width="202"/>
 

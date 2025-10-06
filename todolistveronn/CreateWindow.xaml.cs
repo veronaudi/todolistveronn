@@ -43,19 +43,34 @@ namespace todolistveronn
                 MessageBox.Show("Введите название задачи!");
                 return;
             }
-            foreach (var child in SubTasksPanel.Children)
+
+            string category = CategoryTextBox.Text?.Trim();
+            if (string.IsNullOrEmpty(category))
             {
-                if (child is TextBox tb && !string.IsNullOrWhiteSpace(tb.Text))
-                {
-                    NewTask.SubTasks.Add(new Taskl(tb.Text.Trim(), NewTask.DueDate, NewTask.Category, NewTask.Priority));
-                }
+                category = "Общее";
             }
 
-            string category = CategoryTextBox.Text?.Trim() ?? "Общее";
             DateTime due = DueDatePicker.SelectedDate ?? DateTime.Now;
             int priority = PriorityComboBox.SelectedIndex + 1;
 
+            // Создаем основную задачу
             NewTask = new Taskl(title, due, category, priority);
+
+            // Добавляем подзадачи
+            foreach (TextBox tb in SubTasksPanel.Children.OfType<TextBox>())
+            {
+                if (!string.IsNullOrWhiteSpace(tb.Text))
+                {
+                    var subTask = new Taskl(tb.Text.Trim(), due, category, priority)
+                    {
+                        IsSubtask = true
+                    };
+                    NewTask.SubTasks.Add(subTask);
+                }
+            }
+
+            // Обновляем текст подзадач для отображения
+            NewTask.UpdateSubTasksText();
             DialogResult = true;
             Close();
         }

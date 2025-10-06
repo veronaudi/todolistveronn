@@ -51,6 +51,7 @@ namespace todolistveronn
             if (window.ShowDialog() == true)
             {
                 Tasks.Add(window.NewTask);
+                UpdateSubTasksDisplay();
             }
         }
         private void ToggleCompleted_Click(object sender, RoutedEventArgs e)
@@ -58,6 +59,7 @@ namespace todolistveronn
             if (sender is Button btn && btn.DataContext is Taskl task)
             {
                 task.IsCompleted = !task.IsCompleted;
+                fileSave.SaveData(Tasks);
             }
         }
 
@@ -71,22 +73,15 @@ namespace todolistveronn
             if (tgTodo.SelectedItem is Taskl selectedTask)
             {
                 Tasks.Remove(selectedTask);
+                fileSave.SaveData(Tasks);
             }
         }
-
-        private void RefreshGrid()
+        private void UpdateSubTasksDisplay()
         {
-            var flatList = new ObservableCollection<Taskl>();
-            foreach (var t in Tasks)
+            foreach (var task in Tasks)
             {
-                flatList.Add(t);
-                foreach (var st in t.SubTasks)
-                {
-                    // добавляем отступ в Title
-                    flatList.Add(new Taskl($"    {st.Title}", st.DueDate, st.Category, st.Priority) { IsCompleted = st.IsCompleted });
-                }
+                task.UpdateSubTasksText();
             }
-            tgTodo.ItemsSource = flatList;
         }
 
     }

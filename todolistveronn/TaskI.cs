@@ -15,7 +15,21 @@ namespace todolistveronn
         private DateTime dueDate;
         private string category;
         private int priority;
+        private string subTasksText;
+        private ObservableCollection<Taskl> subTasks;
 
+        public ObservableCollection<Taskl> SubTasks
+        {
+            get
+            {
+                if (subTasks == null)
+                    subTasks = new ObservableCollection<Taskl>();
+                return subTasks;
+            }
+            set { subTasks = value; }
+        }
+
+        public bool IsSubtask { get; set; }
         public Taskl(string title, DateTime dueDate, string category, int priority)
         {
             this.title = title;
@@ -23,7 +37,8 @@ namespace todolistveronn
             this.category = category;
             this.priority = priority;
             this.isCompleted = false;
-            SubTasks = new ObservableCollection<Taskl>();
+            this.subTasks = new ObservableCollection<Taskl>();
+            UpdateSubTasksText();
         }
         public Taskl()
         {
@@ -32,12 +47,18 @@ namespace todolistveronn
             this.category = "Общее";
             this.priority = 1;
             this.isCompleted = false;
-            SubTasks = new ObservableCollection<Taskl>();
+            this.subTasks = new ObservableCollection<Taskl>();
+            UpdateSubTasksText();
         }
         public string Title
         {
             get { return title; }
-            set { title = value; }
+            set { title = value; OnPropertyChanged(nameof(Title)); }
+        }
+        public string SubTasksText
+        {
+            get => subTasksText;
+            set { subTasksText = value; OnPropertyChanged(nameof(SubTasksText)); }
         }
         public bool IsCompleted
         {
@@ -68,8 +89,21 @@ namespace todolistveronn
             get { return priority; }
             set { priority = value; }
         }
-        public ObservableCollection<Taskl> SubTasks { get; set; }
+
         public string Status => IsCompleted ? "[✓]" : "[ ]";
+
+        public void UpdateSubTasksText()
+        {
+            if (SubTasks.Count > 0)
+            {
+                var subTaskTitles = SubTasks.Select(st => st.Title);
+                SubTasksText = "Подзадачи: " + string.Join("; ", subTaskTitles);
+            }
+            else
+            {
+                SubTasksText = string.Empty;
+            }
+        }
         public override string ToString()
         {
             string status = isCompleted ? "[✓]" : "[ ]";
