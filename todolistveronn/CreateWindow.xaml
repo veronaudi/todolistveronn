@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:todolistveronn"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Новая задача" Height="405" Width="565">
     <Grid>
         
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="39,31,117,76">
-            <TextBox x:Name="TaskTitle" TextWrapping="Wrap" AcceptsReturn="True" FontSize="16" Text="Задача" Height="318"/>
+            <TextBox x:Name="TaskTitle" TextWrapping="Wrap" AcceptsReturn="True" FontSize="16" Text="Новая задача" Height="272"/>
         </ScrollViewer>
         
         <Button x:Name="CreateButton" Content="Создать" HorizontalAlignment="Left" Margin="465,31,0,0" VerticalAlignment="Top" Height="32" Width="73" Click="CreateButton_Click"/>
 
         <TextBox x:Name="CategoryTextBox" HorizontalAlignment="Left" Height="33" Margin="300,308,0,0" TextWrapping="Wrap" Text="Добавить категорию" VerticalAlignment="Top" Width="202"/>
-        <Button Content="Добавить подзадачу" HorizontalAlignment="Left" Margin="401,267,0,0" VerticalAlignment="Top" Height="18" Width="28" RenderTransformOrigin="-0.332,0.597"/>
         <DatePicker x:Name="DueDatePicker" Margin="40,308,320,43" Height="33" Width="202"/>
 
-        <Label Content="Приоритет:" HorizontalAlignment="Left" Margin="465,68,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="PriorityComboBox" HorizontalAlignment="Left" Margin="450,99,0,0" VerticalAlignment="Top" Width="100" SelectedIndex="0">
-            <ComboBoxItem Content="Низкий" Tag="1"/>
-            <ComboBoxItem Content="Обычный" Tag="2"/>
-            <ComboBoxItem Content="Высокий" Tag="3"/>
-            <ComboBoxItem Content="Срочный" Tag="4"/>
+        <Label Content="Приоритет:" HorizontalAlignment="Left" Margin="438,68,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="PriorityComboBox" HorizontalAlignment="Left" Margin="438,99,0,0" VerticalAlignment="Top" Width="100" SelectedIndex="0">
+            <ComboBoxItem Content="Низкий" Tag="4"/>
+            <ComboBoxItem Content="Обычный" Tag="3"/>
+            <ComboBoxItem Content="Высокий" Tag="2"/>
+            <ComboBoxItem Content="Срочный" Tag="1"/>
         </ComboBox>
     </Grid>
 </Window>
